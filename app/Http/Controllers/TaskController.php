@@ -2,30 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProjectStoreRequest;
-use App\Http\Requests\ProjectUpdateRequest;
-use App\Models\Project;
+use App\Http\Requests\TaskUpdateRequest;
+use App\Models\Task;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $projects = Project::all();
-        return response()->json($projects);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(ProjectStoreRequest $request)
-    {
-        $new_project = Project::create($request->validated());
-        return response()->json($new_project, 201);
+        $tasks = Task::all();
+        return response()->json($tasks);
     }
 
     /**
@@ -34,12 +24,12 @@ class ProjectController extends Controller
     public function show(string $id)
     {
         try {
-            $project = Project::where('id', $id)->firstOrFail();
-            return response()->json($project);
+            $task = Task::where('id', $id)->firstOrFail();
+            return response()->json($task);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'success'   => false,
-                'message'   => 'Project ID: ' . $id . ' not found.'
+                'message'   => 'Task ID: ' . $id . ' not found.'
             ], 404);
         }
     }
@@ -47,12 +37,12 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProjectUpdateRequest $request, string $id)
+    public function update(TaskUpdateRequest $request, string $id)
     {
         try {
-            $project = Project::findOrFail($id);
-            $project->update($request->validated());
-            return response()->json($project);
+            $task = Task::findOrFail($id);
+            $task->update($request->validated());
+            return response()->json($task);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'success'   => false,
@@ -67,16 +57,16 @@ class ProjectController extends Controller
     public function destroy(string $id)
     {
         try {
-            $project = Project::where('id', $id)->firstOrFail();
-            $project->delete();
+            $task = Task::where('id', $id)->firstOrFail();
+            $task->delete();
             return response()->json([
                 'success'   => true,
-                'message'   => 'Project ID: ' . $id . ' deleted.'
+                'message'   => 'Task ID: ' . $id . ' deleted.'
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'success'   => false,
-                'message'   => 'Project ID: ' . $id . ' not found.'
+                'message'   => 'Task ID: ' . $id . ' not found.'
             ], 404);
         }
     }

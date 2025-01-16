@@ -16,6 +16,8 @@ class Task extends Model
         'status'
     ];
 
+    protected $guarded = [];
+
     /**
      * Get the project that owns the task.
      */
