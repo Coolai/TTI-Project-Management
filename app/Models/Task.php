@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
+    protected $fillable = [
+        'project_id', 
+        'title', 
+        'description', 
+        'assigned_to', 
+        'due_date', 
+        'status'
+    ];
+
     /**
      * Get the project that owns the task.
      */

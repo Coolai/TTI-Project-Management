@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
+    protected $fillable = [
+        'title', 
+        'description', 
+        'status'
+    ];
+
+    protected $guarded = [];
+
     /**
      * Get the tasks for the project.
      */
