@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Task extends Model
 {
     /**
-     * Get the post that owns the comment.
+     * Get the project that owns the task.
      */
     public function project(): BelongsTo
     {
