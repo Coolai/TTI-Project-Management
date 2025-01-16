@@ -9,3 +9,7 @@ Sail on MacOS was used via issuing the command:
 `curl -s "https://laravel.build/tti-project-management" | bash`
 
 To run the application locally, follow the steps below:
+
+`cd /pathToProject/localName`
+
+`./vendor/bin/sail up -d`
